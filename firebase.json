@@ -6,7 +6,14 @@
       "firestore.rules",
       ".firebaserc",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      
+"firebase-sync.txt",
+"firebase-sync-backup.txt",
+"firebase-sync-before-admin.txt.txt",
+"firebase-sync - Copy.js",
+"site - Copy.js",
+"site-backup.txt"
     ]
   },
   "firestore": {
