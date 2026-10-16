@@ -17,3 +17,14 @@ Thumbs.db
 *-backup.*
 *-before-admin.*
 *- Copy.*
+
+# Local Firebase notes and backup copies
+firebase-sync.txt
+firebase-sync-backup.txt
+firebase-sync-before-admin.txt.txt
+firebase-sync - Copy.js
+site - Copy.js
+site-backup.txt
+
+# Local Firebase data
+.firebase/
