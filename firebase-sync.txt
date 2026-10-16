@@ -1,0 +1,82 @@
+/* Firebase Auth + per-user Firestore sync for PantryChef (compat SDK). */
+(function () {
+  const config = window.PANTRYCHEF_FIREBASE_CONFIG || {};
+  const required = ['apiKey','authDomain','projectId','appId'];
+  const configured = required.every(k => config[k] && !String(config[k]).includes('PASTE_'));
+  window.pantryFirebaseReady = false;
+  window.pantryCloudReady = Promise.resolve(false);
+  if (!configured || !window.firebase) {
+    console.warn('PantryChef Firebase is not configured yet. Add your web app config to firebase-config.js.');
+    return;
+  }
+  if (!firebase.apps.length) firebase.initializeApp(config);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  window.pantryAuth = auth;
+  window.pantryDb = db;
+  window.pantryFirebaseReady = true;
+
+
+window.pantryIsAdmin = async function () {
+  const user = auth.currentUser;
+  if (!user) return false;
+
+  try {
+    const token = await user.getIdTokenResult(true);
+    return token.claims.admin === true;
+  } catch (error) {
+    console.error('Admin verification failed:', error);
+    return false;
+  }
+};
+	
+window.pantryLoadAllRecipes = async function () {
+  if (!auth.currentUser) {
+    throw new Error('Please sign in first.');
+  }
+
+  const isAdmin = await window.pantryIsAdmin();
+
+  if (!isAdmin) {
+    throw new Error('Administrator permission required.');
+  }
+
+  const snapshot = await db.collectionGroup('pantryData').get();
+  const result = [];
+
+  snapshot.forEach(doc => {
+    if (doc.id !== 'pantrychef_recipes') return;
+
+    const ownerUid = doc.ref.parent.parent?.id;
+    const value = doc.data()?.value;
+
+    if (!ownerUid || !Array.isArray(value)) return;
+
+    value.forEach(recipe => {
+      result.push({
+        ...recipe,
+        _pantryOwnerUid: ownerUid
+      });
+    });
+  });
+
+  return result;
+};
+window.pantryUpdateOwnerRecipes = async function (ownerUid, updatedRecipes) {
+  if (!auth.currentUser) {
+    throw new Error('Please sign in first.');
+  }
+
+  if (!(await window.pantryIsAdmin())) {
+    throw new Error('Administrator permission required.');
+  }
+
+  if (!ownerUid || !Array.isArray(updatedRecipes)) {
+    throw new Error('Invalid recipe data.');
+  }
+
+  await docFor(ownerUid, 'pantrychef_recipes').set({
+    value: updatedRecipes,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+};

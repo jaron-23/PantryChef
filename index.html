@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f4ec" />
+  <title>PantryChef — Cook with what you have</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="announcement">GOOD FOOD, LESS WASTE <span>✦</span> Start with what’s already in your kitchen.</div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="PantryChef home"><span class="brand-mark">p.</span><span>pantry<span class="brand-light">chef</span></span></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html" class="active">Home</a><a href="recipes.html">Recipes</a><a href="submit-recipe.html">Share a recipe</a><a href="meal-planner.html">Meal planner</a><a href="favorites.html">Favorites</a><a href="shopping-list.html">Shopping list</a><a href="about.html">About</a>
+    </nav>
+    <div class="header-actions"><a class="btn btn-quiet" href="account.html">Create an Account / Log in</a><button class="btn btn-dark" id="openLogin">Log in</button><button class="mobile-menu" id="mobileMenu" aria-label="Toggle menu">☰</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR KITCHEN, REIMAGINED</div>
+        <h1>What’s in your<br><em>pantry today?</em></h1>
+        <p class="hero-text">Turn the ingredients you already have into something delicious. Less waste, less stress, more good food.</p>
+        <a class="btn btn-green btn-large" href="recipes.html">Find my next meal <span>↗</span></a>
+        <div class="hero-proof"><div class="avatar-stack"><span>🥑</span><span>🍅</span><span>🥚</span></div><span><b>Simple ingredients.</b> Delicious possibilities.</span></div>
+      </div>
+      <div class="hero-visual">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85" alt="Fresh colorful ingredients in a bowl" />
+        <div class="floating-note note-top"><span class="note-icon">✦</span><span><b>Cook smarter</b><small>Use what you have</small></span></div>
+        <div class="floating-note note-bottom"><span class="note-emoji">🥕</span><span><b>Waste less</b><small>Make every ingredient count</small></span></div>
+        <div class="hero-sticker">GOOD<br>FOOD<br><span>↑</span></div>
+      </div>
+      <div class="hero-bottom-label">FRESH IDEAS FOR EVERYDAY COOKING <span>✳</span></div>
+    </section>
+
+    <section class="ingredient-section section-wrap" id="discover">
+      <div class="section-heading">
+        <div><div class="eyebrow">THE MAGIC STARTS HERE</div><h2>What do you <em>have?</em></h2></div>
+        <p>Choose ingredients from your kitchen. We’ll find recipes that make the most of them.</p>
+      </div>
+      <div class="ingredient-search">
+        <span class="search-icon">⌕</span><input id="ingredientInput" type="text" placeholder="Type an ingredient, e.g. eggs, rice, tomatoes…" autocomplete="off" />
+        <button class="btn btn-dark" id="addIngredient">Add ingredient <span>+</span></button>
+      </div>
+      <div class="ingredient-chips" id="ingredientChips">
+        <button class="ingredient-chip" data-ingredient="Eggs">🥚 Eggs <span>+</span></button>
+        <button class="ingredient-chip" data-ingredient="Rice">🍚 Rice <span>+</span></button>
+        <button class="ingredient-chip" data-ingredient="Tomatoes">🍅 Tomatoes <span>+</span></button>
+        <button class="ingredient-chip" data-ingredient="Chicken">🍗 Chicken <span>+</span></button>
+        <button class="ingredient-chip" data-ingredient="Garlic">🧄 Garlic <span>+</span></button>
+        <button class="ingredient-chip" data-ingredient="Potatoes">🥔 Potatoes <span>+</span></button>
+        <button class="ingredient-chip" data-ingredient="Tofu">🧈 Tofu <span>+</span></button>
+        <button class="ingredient-chip" data-ingredient="Cabbage">🥬 Cabbage <span>+</span></button>
+      </div>
+      <div class="selected-ingredients" id="selectedIngredients"></div>
+      <div class="filter-row">
+        <div class="result-count" id="resultCount">OUR PICKS <span>·</span> 12 delicious ideas</div>
+        <div class="filters"><select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option><option>Filipino</option><option>Quick & easy</option><option>Vegetarian</option><option>Budget meals</option><option>Breakfast</option></select><select id="timeFilter" aria-label="Filter by cooking time"><option value="all">Any cook time</option><option value="15">15 min or less</option><option value="30">30 min or less</option></select><select id="sortFilter" aria-label="Sort recipes"><option value="match">Best ingredient match</option><option value="cost">Lowest cost</option><option value="time">Quickest first</option></select></div>
+      </div>
+      <div class="recipe-grid" id="recipeGrid"></div>
+      <div class="empty-state hidden" id="emptyState"><div>🥣</div><h3>No recipes found just yet</h3><p>Try removing a filter or adding different ingredients.</p><button class="btn btn-green" id="clearFilters">Clear filters</button></div>
+    </section>
+
+    <section class="budget-section" id="budget-picks">
+      <div class="budget-image"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85" alt="Fresh vegetables prepared for cooking"><div class="image-label">A LITTLE GOES A LONG WAY</div></div>
+      <div class="budget-copy"><div class="eyebrow light-eyebrow">GOOD FOOD, ON A BUDGET</div><h2>Make your money<br>go <em>further.</em></h2><p>Every recipe includes an estimated cost per serving, so you can plan satisfying meals without stretching your budget.</p><div class="budget-stat"><strong>₱50–₱100</strong><span>sample cost range per serving<br><small>Estimates vary by location and store.</small></span></div><a class="text-link" href="#discover">Explore budget-friendly recipes <span>↗</span></a></div>
+    </section>
+
+    <section class="how-section section-wrap" id="how-it-works">
+      <div class="section-heading centered"><div><div class="eyebrow">NO FANCY SHOPPING REQUIRED</div><h2>Three steps to <em>something good.</em></h2></div></div>
+      <div class="steps-grid"><article class="step-card"><div class="step-number">01</div><div class="step-illustration">🧺</div><h3>Check your pantry</h3><p>Pick the ingredients you already have in your fridge or cupboard.</p></article><article class="step-card"><div class="step-number">02</div><div class="step-illustration">🥘</div><h3>Find your recipe</h3><p>Explore recipes ranked by matching ingredients, time, and budget.</p></article><article class="step-card"><div class="step-number">03</div><div class="step-illustration">🍽️</div><h3>Make it delicious</h3><p>Follow the steps, save your favorites, and enjoy a little kitchen win.</p></article></div>
+    </section>
+
+    <section class="newsletter">
+      <div><div class="eyebrow light-eyebrow">A FRESH IDEA, NOW AND THEN</div><h2>Good things are<br><em>cooking.</em></h2><p>Save your favorite recipes and make everyday meals feel a little easier.</p></div>
+      <form id="newsletterForm" class="newsletter-form"><label for="newsletterEmail">Your email address</label><div><input type="email" id="newsletterEmail" placeholder="you@example.com" required><button class="btn btn-lime" type="submit">Count me in ↗</button></div><small>This demo keeps your signup in this browser only.</small></form>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="index.html"><span class="brand-mark">p.</span><span>pantry<span class="brand-light">chef</span></span></a><p>Cook with what you have. Waste a little less.</p><div><a href="index.html">Home</a><a href="recipes.html">Browse recipes</a><a href="submit-recipe.html">Share a recipe</a><a href="meal-planner.html">Meal planner</a><a href="shopping-list.html">Shopping list</a><a href="about.html">About PantryChef</a></div><small>© 2026 PantryChef · Cook, share, and discover.</small></footer>
+
+  <div class="modal-backdrop hidden" id="recipeModal"><section class="modal recipe-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" data-close aria-label="Close">×</button><div id="recipeModalContent"></div></section></div>
+  <div class="modal-backdrop hidden" id="loginModal"><section class="modal login-modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle"><button class="modal-close" data-close aria-label="Close">×</button><div class="modal-kicker">WELCOME TO THE KITCHEN</div><h2 id="loginTitle">Log in to <em>PantryChef.</em></h2><p>Log in to save favorites, plan meals, manage your list, and share recipes.</p><form id="loginForm"><label>Email</label><input type="email" id="loginEmail" placeholder="you@example.com" required><label>Password</label><input type="password" id="loginPassword" placeholder="Enter your account password" required><button class="btn btn-green btn-full" type="submit">Continue ↗</button></form><div class="demo-note">New to PantryChef? <a href="account.html"><b>Create an account</b></a>. Demo accounts are stored only in this browser.</div><div id="loginMessage" class="form-message"></div></section></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="firebase-config.js"></script><script src="firebase-sync.js"></script><script src="recipes-data.js"></script>
+  <script src="app.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

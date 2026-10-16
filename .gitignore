@@ -1,0 +1,19 @@
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and local settings
+node_modules/
+.vscode/
+.firebase/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*-backup.*
+*-before-admin.*
+*- Copy.*
