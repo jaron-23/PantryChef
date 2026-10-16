@@ -47,3 +47,112 @@ html{scroll-behavior:smooth}body{animation:pageEnter .45s ease both}.site-header
   background: #315b43 !important;
   color: #ffffff !important;
 }
+
+/* PantryChef UI Enhancement — October 2026 */
+
+/* Consistent keyboard accessibility */
+:focus-visible {
+  outline: 3px solid #86a96b;
+  outline-offset: 3px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* More polished recipe cards */
+.page-recipe {
+  border-color: #e1e4d8;
+  box-shadow: 0 5px 18px rgba(32, 37, 31, 0.045);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.page-recipe:hover {
+  transform: translateY(-5px);
+  border-color: #c8d5bc;
+  box-shadow: 0 15px 32px rgba(32, 37, 31, 0.1);
+}
+
+.page-recipe img {
+  background: #e9e9df;
+}
+
+/* Consistent button styling */
+.mini-btn {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mini-btn:not(:disabled):hover {
+  border-color: #78936c;
+  background: #f0f4e9;
+}
+
+.mini-btn.primary:not(:disabled):hover {
+  background: #3f6b4d;
+  color: #fff;
+}
+
+/* Cleaner form controls */
+.page-toolbar input,
+.page-toolbar select,
+.form-control {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-toolbar input:focus,
+.page-toolbar select:focus,
+.form-control:focus {
+  border-color: #78936c;
+  box-shadow: 0 0 0 3px rgba(120, 147, 108, 0.14);
+  outline: none;
+}
+
+/* Clearer page spacing and headings */
+.page-content {
+  padding-top: 52px;
+}
+
+.page-section-title {
+  line-height: 1.15;
+}
+
+.page-intro {
+  line-height: 1.8;
+}
+
+/* Better mobile touch targets */
+@media (max-width: 580px) {
+  .page-recipe-body {
+    padding: 17px;
+  }
+
+  .recipe-card-actions {
+    gap: 8px !important;
+  }
+
+  .recipe-card-actions button,
+  .recipe-card-actions .mini-btn {
+    min-height: 44px !important;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-recipe,
+  .mini-btn {
+    transition: none;
+  }
+
+  .page-recipe:hover,
+  .mini-btn:not(:disabled):hover {
+    transform: none;
+  }
+}
